@@ -5,7 +5,6 @@ import interpreter.exceptions.StatementException;
 import interpreter.model.PrgState;
 import interpreter.model.exp.IExp;
 import interpreter.model.value.BoolValue;
-import interpreter.model.value.IValue;
 
 public record IfStmt(IExp cond, IStmt thenS, IStmt elseS) implements IStmt {
     //S5
