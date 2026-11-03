@@ -24,7 +24,7 @@ class IfStmtTest {
     @BeforeEach
     void setUp() throws ADTException {
         state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new NopStmt());
-        state.getExeStack().pop(); // empty the stack, so we only see what IfStmt pushes
+        state.getExeStack().pop(); // emptying the stack ->>> see what IfStmt pushes
     }
 
     @Test
