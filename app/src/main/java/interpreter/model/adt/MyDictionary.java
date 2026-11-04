@@ -32,14 +32,16 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
         map.put(key, value);
     }
 
-    void remove(K key) throws ADTException
+    @Override
+    public void remove(K key) throws ADTException
     {
         if (!map.containsKey(key))
             throw new ADTException("key" + key + "is not in the dictionary");
         map.remove(key);
     }
 
-    Map<K, V> toMap() // new: a read-only copy (Map.copyOf)
+    @Override
+    public Map<K, V> toMap() // new: a read-only copy (Map.copyOf)
     {
         return Map.copyOf(map);
     }
@@ -48,6 +50,4 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
     public String toString() {
         return map.toString();
     }
-
-
 }
