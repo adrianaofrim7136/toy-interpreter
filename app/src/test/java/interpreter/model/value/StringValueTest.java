@@ -16,8 +16,13 @@ public class StringValueTest {
     }
 
     @Test
-    void toStringsShowsInt() {
-        assertEquals("1", new IntValue(1).toString());
+    void toStringShowsTheTextInQuotes() {
+        assertEquals("\"seven\"", new StringValue("seven").toString());
+    }
+
+    @Test
+    void equalValuesHaveTheSameHashCode() {
+        assertEquals(new StringValue("seven").hashCode(), new StringValue("seven").hashCode());
     }
 }
 
