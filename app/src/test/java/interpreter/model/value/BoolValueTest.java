@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import interpreter.model.type.BoolType;
 import org.junit.jupiter.api.Test;
 
-public class BoolValueTest {
+class BoolValueTest {
     @Test
     void typeIsBool() {
         assertEquals(new BoolType(), new BoolValue(true).getType());

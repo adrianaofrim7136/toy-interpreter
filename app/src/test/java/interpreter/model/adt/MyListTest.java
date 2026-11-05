@@ -6,7 +6,7 @@ import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class MyListTest {
+class MyListTest {
     private IList<Integer> list;
 
     @BeforeEach

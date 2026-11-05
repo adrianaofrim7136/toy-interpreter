@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public class RepositoryTest {
+class RepositoryTest {
     @Test
     void getCrtPrgReturnsTheStoredState() {
         var state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new NopStmt());

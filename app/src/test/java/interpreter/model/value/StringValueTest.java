@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import interpreter.model.type.StringType;
 import org.junit.jupiter.api.Test;
 
-public class StringValueTest {
+class StringValueTest {
     @Test
     void typeIsString() {
         assertEquals(new StringType(), new StringValue("seven").getType());

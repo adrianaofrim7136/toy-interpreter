@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import interpreter.model.value.IntValue;
 import org.junit.jupiter.api.Test;
 
-public class IntTypeTest {
+class IntTypeTest {
     @Test
     void defaultValueIsZero() {
         assertEquals(new IntValue(0), new IntType().defaultValue());

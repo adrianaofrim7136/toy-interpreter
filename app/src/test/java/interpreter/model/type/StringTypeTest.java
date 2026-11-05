@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import interpreter.model.value.StringValue;
 import org.junit.jupiter.api.Test;
 
-public class StringTypeTest {
+class StringTypeTest {
     @Test
     void defaultValueIsEmptyString() {
         assertEquals(new StringValue(""), new StringType().defaultValue());

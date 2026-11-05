@@ -11,7 +11,7 @@ import interpreter.model.value.IntValue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class VarExpTest {
+class VarExpTest {
     private IDictionary<String, IValue> symTable;
 
     @BeforeEach

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ArithExpTest {
+class ArithExpTest {
     private final IDictionary<String, IValue> symTable = new MyDictionary<>();
 
     private static IExp num(int n) {

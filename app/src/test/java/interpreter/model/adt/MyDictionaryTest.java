@@ -6,7 +6,7 @@ import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class MyDictionaryTest {
+class MyDictionaryTest {
     private IDictionary<String, String> dict;
 
     @BeforeEach

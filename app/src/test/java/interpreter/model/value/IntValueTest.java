@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import interpreter.model.type.IntType;
 import org.junit.jupiter.api.Test;
 
-public class IntValueTest {
+class IntValueTest {
     @Test
     void typeIsInt() {
         assertEquals(new IntType(), new IntValue(1).getType());
