@@ -7,6 +7,8 @@ import interpreter.model.value.IntValue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 class MyListTest {
     private IList<Integer> list;
 
@@ -36,5 +38,12 @@ class MyListTest {
         list.add(13);
         assertThrows(ADTException.class, () -> list.get(1));
         assertThrows(ADTException.class, () -> list.get(-1));
+    }
+
+    @Test
+    void testToList() {
+        list.add(2);
+        list.add(6);
+        assertEquals(List.of(2, 6), list.toList());
     }
 }

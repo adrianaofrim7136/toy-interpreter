@@ -6,6 +6,8 @@ import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 
 class MyStackTest {
     private IStack<Integer> stack;
@@ -37,5 +39,12 @@ class MyStackTest {
     @Test
     void newStackIsEmpty() {
         assertTrue(stack.isEmpty());
+    }
+
+    @Test
+    void testToListFromStack() {
+        stack.push(2);
+        stack.push(3);
+        assertEquals(List.of(3, 2), stack.toList());
     }
 }

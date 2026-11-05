@@ -27,7 +27,7 @@ public class MyList<T> implements IList<T> {
 
     @Override
     public List<T> toList() {
-        return list;
+        return new ArrayList<>(list);
     }
 
     @Override
