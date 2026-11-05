@@ -2,7 +2,6 @@ package interpreter.model;
 
 import interpreter.model.adt.*;
 import interpreter.model.stmt.IStmt;
-import interpreter.model.stmt.NopStmt;
 import interpreter.model.value.IValue;
 import interpreter.model.value.StringValue;
 
@@ -16,31 +15,61 @@ public class PrgState {
     private final IStmt originalProgram;
 
     public PrgState(IStack<IStmt> exeStack, IDictionary<String, IValue> symTable,
-                    IList<IValue> out, IDictionary<StringValue, BufferedReader> fileTable, IStmt program) {
+                    IList<IValue> out,
+                    IDictionary<StringValue, BufferedReader> fileTable,
+                    IStmt program) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
+        this.fileTable = fileTable;
         this.originalProgram = program;
         exeStack.push(program);
     }
 
-    public IStack<IStmt> getExeStack() { return exeStack; }
-    public void setExeStack(IStack<IStmt> exeStack) { this.exeStack = exeStack; }
+    public IStack<IStmt> getExeStack() {
+        return exeStack;
+    }
 
-    public IDictionary<String, IValue> getSymTable() { return symTable; }
-    public void setSymTable(IDictionary<String, IValue> symTable) { this.symTable = symTable; }
+    public void setExeStack(IStack<IStmt> exeStack) {
+        this.exeStack = exeStack;
+    }
 
-    public IList<IValue> getOut() { return out; }
-    public void setOut(IList<IValue> out) { this.out = out; }
+    public IDictionary<String, IValue> getSymTable() {
+        return symTable;
+    }
 
-    public IStmt getOriginalProgram() { return originalProgram; }
+    public void setSymTable(IDictionary<String, IValue> symTable) {
+        this.symTable = symTable;
+    }
+
+    public IList<IValue> getOut() {
+        return out;
+    }
+
+    public void setOut(IList<IValue> out) {
+        this.out = out;
+    }
+
+    public IStmt getOriginalProgram() {
+        return originalProgram;
+    }
 
     public static PrgState of(IStmt program) {
-        return new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new MyDictionary<>(), program);
+        return new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
+                new MyDictionary<>(), program);
+    }
+
+    public IDictionary<StringValue, BufferedReader> getFileTable() {
+        return fileTable;
+    }
+
+    public void setFileTable(IDictionary<StringValue, BufferedReader> fileTable) {
+        this.fileTable = fileTable;
     }
 
     @Override
     public String toString() {
-        return "ExeStack: " + exeStack + "\nSymTable: " + symTable + "\nOut: " + out + "\n";
+
+        return "ExeStack: " + exeStack + "\nSymTable: " + symTable + "\nOut: " + out + "\nFileTable: " + fileTable.toMap().keySet() + "\n";
     }
 }
