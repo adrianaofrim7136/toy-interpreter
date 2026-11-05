@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 class RepositoryTest {
     @Test
     void getCrtPrgReturnsTheStoredState() {
-        var state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new NopStmt());
+        var state = PrgState.of(new NopStmt());
         IRepository repo = new Repository(state);
         assertSame(state, repo.getCrtPrg());
     }

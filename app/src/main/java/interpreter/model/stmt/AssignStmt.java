@@ -1,5 +1,4 @@
 package interpreter.model.stmt;
-
 import interpreter.exceptions.MyException;
 import interpreter.exceptions.StatementException;
 import interpreter.model.PrgState;

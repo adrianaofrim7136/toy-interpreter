@@ -47,7 +47,7 @@ public class TextMenu {
 
     private void run(IStmt program) {
         try {
-            PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), program);
+            PrgState state = PrgState.of(program);
             new Controller(new Repository(state), true).allStep();
         } catch (MyException e) {
             System.out.println("Error: " + e.getMessage());
