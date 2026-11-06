@@ -59,6 +59,16 @@ class ControllerTest {
     }
 
     @Test
+    void fileExampleReadsBothNumbersAndClosesTheFile() throws Exception {
+        Path in = dir.resolve("test.in");
+        Files.writeString(in, "15\n50\n");
+        PrgState s = run(Examples.fileExample(in.toString()));
+        assertEquals(new IntValue(15), s.getOut().get(0));
+        assertEquals(new IntValue(50), s.getOut().get(1));
+        assertTrue(s.getFileTable().toMap().isEmpty());
+    }
+
+    @Test
     void logFileContainsTheFourSectionsInOrder() throws Exception {
         run(Examples.EX1);
         String log = Files.readString(dir.resolve("log.txt"));
