@@ -9,38 +9,61 @@ import interpreter.model.value.IntValue;
 import interpreter.repository.Repository;
 import interpreter.view.Examples;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
-    private static PrgState run(IStmt program) throws MyException {
+    @TempDir
+    Path dir;
+
+    private PrgState run(IStmt program) throws MyException {
         PrgState state = PrgState.of(program);
-        new Controller(new Repository(state), false).allStep();
+        var repo = new Repository(state, dir.resolve("log.txt").toString());
+        new Controller(repo, false).allStep();
         return state;
     }
 
     @Test
     void example1PrintsTwo() throws MyException {
-        PrgState state = run(Examples.ex1);
+        PrgState state = run(Examples.EX1);
         assertTrue(state.getExeStack().isEmpty());
         assertEquals(new IntValue(2), state.getOut().get(0));
     }
 
     @Test
     void example2PrintsEighteen() throws MyException {
-        assertEquals(new IntValue(18), run(Examples.ex2).getOut().get(0));
+        assertEquals(new IntValue(18), run(Examples.EX2).getOut().get(0));
     }
 
     @Test
     void example3PrintsTwo() throws MyException {
-        assertEquals(new IntValue(2), run(Examples.ex3).getOut().get(0));
+        assertEquals(new IntValue(2), run(Examples.EX3).getOut().get(0));
+    }
+
+    @Test
+    void example5PrintsFive() throws MyException {
+        assertEquals(new IntValue(5), run(Examples.EX5).getOut().get(0));
     }
 
     @Test
     void oneStepOnEmptyStackThrows() throws ADTException {
         var state = PrgState.of(new NopStmt());
-        var controller = new Controller(new Repository(state), false);
+        var repo = new Repository(state, dir.resolve("log.txt").toString());
+        var controller = new Controller(repo, false);
         state.getExeStack().pop(); // needs try/catch or "throws ADTException"
         assertThrows(StatementException.class, () -> controller.oneStep(state));
+    }
+
+    @Test
+    void logFileContainsTheFourSectionsInOrder() throws Exception {
+        run(Examples.EX1);
+        String log = Files.readString(dir.resolve("log.txt"));
+        int a = log.indexOf("ExeStack:"), b = log.indexOf("SymTable:"),
+                c = log.indexOf("Out:"), d = log.indexOf("FileTable:");
+        assertTrue(0 <= a && a < b && b < c && c < d);
     }
 }

@@ -12,3 +12,6 @@ build
 out/
 .vscode/
 .DS_Store
+
+# not commiting log files
+log*.txt
