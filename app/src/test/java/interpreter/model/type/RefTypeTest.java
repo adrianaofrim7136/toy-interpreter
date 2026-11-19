@@ -27,5 +27,5 @@ public class RefTypeTest {
 
 /*
 * a Ref T variable gets (0, T);
-* Ref(Ref(int)) equals Ref(Ref(int)) and differs from Ref(int)
+* Ref(Ref(int)) equals Ref(Ref(int)) and differs from Ref(int) jj
 * */
