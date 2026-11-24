@@ -73,7 +73,8 @@ class ControllerTest {
         run(Examples.EX1);
         String log = Files.readString(dir.resolve("log.txt"));
         int a = log.indexOf("ExeStack:"), b = log.indexOf("SymTable:"),
-                c = log.indexOf("Out:"), d = log.indexOf("FileTable:");
-        assertTrue(0 <= a && a < b && b < c && c < d);
+                c = log.indexOf("Out:"), d = log.indexOf("FileTable:"),
+                e = log.indexOf("Heap:");
+        assertTrue(0 <= a && a < b && b < c && c < d && d < e);
     }
 }

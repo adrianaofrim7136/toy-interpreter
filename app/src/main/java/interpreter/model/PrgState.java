@@ -94,7 +94,7 @@ public class PrgState {
         sb.append("FileTable:\n");
         fileTable.toMap().keySet().forEach(f -> sb.append(f.val()).append('\n'));
         sb.append("Heap:\n");
-        new TreeMap<>(heap.getContent()).forEach((k, v) -> sb.append(k).append("->").append(v).append('\n'));
+        new TreeMap<>(heap.getContent()).forEach((k, v) -> sb.append(k).append("-->").append(v).append('\n'));
 
         return sb.toString();
     }
