@@ -23,4 +23,13 @@ public class RefTypeTest {
         assertEquals(new RefType(new IntType()), new RefType(new IntType()));
         assertNotEquals(new RefType(new IntType()), new RefType(new StringType()));
     }
+
+    @Test
+    void nestedRefTypeComparison() {
+        var a = new RefType(new RefType(new IntType()));
+        var b = new RefType(new RefType(new IntType()));
+        assertEquals(a, b);
+        assertEquals(a.hashCode(), b.hashCode());
+        assertNotEquals(a, new RefType(new IntType()));
+    }
 }
