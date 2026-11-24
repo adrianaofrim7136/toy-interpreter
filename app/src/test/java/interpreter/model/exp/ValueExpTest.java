@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import interpreter.exceptions.MyException;
 import interpreter.model.adt.IDictionary;
+import interpreter.model.adt.IHeap;
 import interpreter.model.adt.MyDictionary;
 import interpreter.model.value.IValue;
 
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 class ValueExpTest {
     public IDictionary<String, IValue> symTable;
+    public IHeap heap;
 
     @BeforeEach
     void setUp() {
@@ -21,6 +23,6 @@ class ValueExpTest {
 
     @Test
     void testsEqualValues() throws MyException {
-        assertEquals(new IntValue(7), new ValueExp(new IntValue(7)).eval(symTable));
+        assertEquals(new IntValue(7), new ValueExp(new IntValue(7)).eval(symTable, heap));
     }
 }

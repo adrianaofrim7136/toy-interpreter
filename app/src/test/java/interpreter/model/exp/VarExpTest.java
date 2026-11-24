@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.MyException;
 import interpreter.model.adt.IDictionary;
+import interpreter.model.adt.IHeap;
 import interpreter.model.adt.MyDictionary;
 import interpreter.model.value.IValue;
 import interpreter.model.value.IntValue;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 class VarExpTest {
     private IDictionary<String, IValue> symTable;
+    private IHeap heap;
 
     @BeforeEach
     void setUp() {
@@ -22,11 +24,11 @@ class VarExpTest {
     @Test
     void returnValueOfDeclaredVar() throws MyException {
         symTable.put("july", new IntValue(7));
-        assertEquals(new IntValue(7), new VarExp("july").eval(symTable));
+        assertEquals(new IntValue(7), new VarExp("july").eval(symTable, heap));
     }
 
     @Test
     void undefinedVarThrows() {
-        assertThrows(ExpressionException.class, () -> new VarExp("a").eval(symTable));
+        assertThrows(ExpressionException.class, () -> new VarExp("a").eval(symTable, heap));
     }
 }
