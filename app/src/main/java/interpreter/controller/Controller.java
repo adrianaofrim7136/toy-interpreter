@@ -29,7 +29,11 @@ public class Controller {
         display(prg);
         while (!prg.getExeStack().isEmpty()) {
             oneStep(prg);
-            repo.logPrgStateExec();
+            repo.logPrgStateExec();                       // before collection
+            prg.getHeap().setContent(GarbageCollector.unsafeGarbageCollector(
+                    GarbageCollector.getAddrFromSymTable(prg.getSymTable().toMap().values()),
+                    prg.getHeap().getContent()));
+            repo.logPrgStateExec();                       // after collection
             display(prg);
         }
     }

@@ -5,7 +5,10 @@ import interpreter.exceptions.StatementException;
 import interpreter.model.PrgState;
 import interpreter.model.stmt.IStmt;
 import interpreter.model.stmt.NopStmt;
+import interpreter.model.type.IntType;
+import interpreter.model.type.RefType;
 import interpreter.model.value.IntValue;
+import interpreter.model.value.RefValue;
 import interpreter.repository.Repository;
 import interpreter.view.Examples;
 import org.junit.jupiter.api.Test;
@@ -13,6 +16,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -76,5 +81,32 @@ class ControllerTest {
                 c = log.indexOf("Out:"), d = log.indexOf("FileTable:"),
                 e = log.indexOf("Heap:");
         assertTrue(0 <= a && a < b && b < c && c < d && d < e);
+    }
+
+
+    @Test void example6() throws MyException {
+        var s = run(Examples.EX6);
+        assertEquals(new RefValue(1, new IntType()), s.getOut().get(0));
+        assertEquals(new RefValue(2, new RefType(new IntType())), s.getOut().get(1));
+        assertEquals(Map.of(1, new IntValue(20), 2, new RefValue(1, new IntType())), s.getHeap().getContent());
+    }
+    @Test void example7() throws MyException {
+        var s = run(Examples.EX7);
+        assertEquals(new IntValue(20), s.getOut().get(0));
+        assertEquals(new IntValue(25), s.getOut().get(1));
+    }
+    @Test void example8() throws MyException {
+        var s = run(Examples.EX8);
+        assertEquals(new IntValue(20), s.getOut().get(0));
+        assertEquals(new IntValue(35), s.getOut().get(1));
+        assertEquals(Map.of(1, new IntValue(30)), s.getHeap().getContent());
+    }
+    @Test void example9PrintsTwentyWithTheSafeCollector() throws MyException {
+        assertEquals(new IntValue(20), run(Examples.EX9).getOut().get(0));
+    }
+    @Test void example10CountsDown() throws MyException {
+        var s = run(Examples.EX10);
+        assertEquals(List.of(new IntValue(4), new IntValue(3), new IntValue(2), new IntValue(1), new IntValue(0)),
+                s.getOut().toList());
     }
 }
